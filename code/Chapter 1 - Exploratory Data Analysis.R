@@ -72,8 +72,26 @@ median(state[['Population']])
 weighted.mean(state[['Murder.Rate']], w=state[['Population']])
 ?weighted.mean
 
+# Here's a breakdown of the code:
+#
+# state[['Murder.Rate']]: This selects the Murder.Rate column of the state data frame using double 
+# square brackets [[ ]]. This creates a vector of murder rate values.
+# 
+# state[['Population']]: This selects the Population column of the state data frame using 
+# double square brackets [[ ]]. This creates a vector of population values.
+# 
+# weighted.mean(): This is an R function that calculates the weighted mean of a numeric vector. 
+# It takes two numeric arguments: the first is the vector of values to be averaged, and the second 
+# is a vector of weights, which determine the relative importance of each value in the calculation of the mean.
+# 
+# w=state[['Population']]: This sets the w argument of the weighted.mean() function to the Population 
+# column of the state data frame. This means that each state's murder rate will be weighted by its 
+# population in the calculation of the weighted mean.
+
+
 # Since base R doesn’t have a function for weighted median, 
 # we need to install a package such as matrixStats
+
 library('matrixStats')
 weightedMedian(state[['Murder.Rate']], w=state[['Population']])
 
