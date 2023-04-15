@@ -31,14 +31,49 @@ airline_stats$airline <- ordered(airline_stats$airline,
 
 # Table 1-2
 state_asc <- state
+
 state_asc[['Population']] <- formatC(state_asc[['Population']], format='d', digits=0, big.mark=',')
+
+# This line modifies the Population column of the state_asc data frame. 
+# The [['Population']] part of the code selects the Population column of state_asc. 
+# The formatC() function is then used to format the values in this column.
+# The format argument specifies the format of the output. 
+# In this case, 'd' is used to format the numbers as integers with commas as the thousands separator. 
+# The digits argument is set to 0, indicating that no decimal places should be included. 
+# The big.mark argument is set to ',', which specifies that commas should be used to separate groups of thousands.
+# The result of the formatC() function call is then assigned back to the Population column of state_asc, 
+# using the <- assignment operator. 
+# This updates the values in the Population column to their formatted versions.
+
 state_asc[1:8,]
 
 mean(state[['Population']])
 mean(state[['Population']], trim=0.1)
+
+# Here's a breakdown of the code:
+# state[['Population']]: This selects the Population column of the state data frame using 
+# double square brackets [[ ]]. This creates a vector of population values.
+
+# mean(): This is an R function that calculates the arithmetic mean of a numeric vector. 
+# It takes one or more numeric arguments, and returns their mean.
+
+# trim=0.1: This sets the trim argument of the mean() function to 0.1. 
+# This means that the function will calculate a trimmed mean, which excludes the smallest 
+# and largest 10% of the population values. 
+# In other words, it trims the top and bottom 10% of the values before calculating the mean.
+
+# Putting it all together, the code calculates the trimmed mean of the population values in 
+# the state data frame. By trimming the top and bottom 10% of the values, the resulting trimmed 
+# mean is less sensitive to extreme values and outliers than the regular arithmetic mean, and 
+# can provide a more representative measure of central tendency.
+
 median(state[['Population']])
 
 weighted.mean(state[['Murder.Rate']], w=state[['Population']])
+?weighted.mean
+
+# Since base R doesn’t have a function for weighted median, 
+# we need to install a package such as matrixStats
 library('matrixStats')
 weightedMedian(state[['Murder.Rate']], w=state[['Population']])
 
@@ -47,7 +82,7 @@ weightedMedian(state[['Murder.Rate']], w=state[['Population']])
 sd(state[['Population']])
 IQR(state[['Population']])
 mad(state[['Population']])
-
+?mad
 ### Percentiles and Boxplots
 
 quantile(state[['Murder.Rate']], p=c(.05, .25, .5, .75, .95))
