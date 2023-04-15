@@ -1,2 +1,2 @@
-# R-PSDS
-Practical Statistics for Data Scientists - Using R 
+# Practical Statistics for Data Scientists
+50 + Essential Concepts Using R 
